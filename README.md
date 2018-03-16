@@ -14,10 +14,6 @@ const PostGraphileDerivedFieldPlugin = require("postgraphile-plugin-derived-fiel
 
 const app = express();
 
-const AWS = require("aws-sdk");
-const s3 = new AWS.S3();
-const bucket = "postgraphile-plugin-test";
-
 app.use(
   postgraphile(pgConfig, schema, {
     graphiql: true,
