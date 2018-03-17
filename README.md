@@ -8,7 +8,7 @@ The term "derived fields" is used to differentiate this approach from the standa
 
 ## Getting Started
 
-Import and append the plugin:
+Define your derived fields in the `derivedFieldDefinitions` property of `graphileBuildOptions`:
 
 ``` js
 const express = require("express");
@@ -32,7 +32,7 @@ app.use(
 app.listen(5000);
 ```
 
-and provide `derivedFieldDefinitions` as an array of objects with the following structure:
+The `derivedFieldDefinitions` should be an array of objects with the following structure:
 
 ```
 type DerivedFieldDefintion = {
