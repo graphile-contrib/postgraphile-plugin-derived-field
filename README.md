@@ -22,8 +22,8 @@ app.use(
       derivedFieldDefinitions: [
         {
           identifiers: ["my_schema.my_table.my_column"],
-          inflect: (fieldName) => `${fieldName}Derived`,
-          resolve: (val) => `Value derived from ${val}`
+          inflect: fieldName => `${fieldName}Derived`,
+          resolve: val => `Value derived from ${val}`
         }
       ]
     }
@@ -58,8 +58,8 @@ app.use(
       derivedFieldDefinitions: [
         {
           identifiers: ["my_schema.my_table.my_column"],
-          inflect: (fieldName) => `${fieldName}Url`,
-          resolve: (val) => s3.getSignedUrl('getObject', {Bucket: bucket, Key: val, Expires: 900})
+          inflect: fieldName => `${fieldName}SignedUrl`,
+          resolve: val => s3.getSignedUrl('getObject', {Bucket: bucket, Key: val, Expires: 900})
         }
       ]
     }
