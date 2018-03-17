@@ -64,6 +64,8 @@ The `identifiers` items can be supplied as strings or objects.  The following ar
 
 <!--  If an `inflect` function is provided, new fields will be generated using `resolve`.  If `inflect` is omitted, the existing fields will be wrapped by `resolve`. -->
 
+If `returnTypeName` is not specified, the field is defined as a `GraphQLString` type.
+
 ## Use Cases
 
 ### Derive a new field from an existing field
