@@ -35,10 +35,12 @@ app.listen(5000);
 The `derivedFieldDefinitions` should be an array of objects with the following structure:
 
 ```
-type DerivedFieldDefintion = {
+type DerivedFieldDefinition = {
   identifiers: Array<string | Identifier>,
-  inflect?: function,
-  resolve: function
+  inflect: function,
+  resolve: function,
+  description?: string
+  returnTypeName?: string
 }
 
 type Identifier = {
