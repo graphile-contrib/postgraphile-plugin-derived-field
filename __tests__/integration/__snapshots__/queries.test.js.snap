@@ -1,0 +1,98 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`derived-field.graphql 1`] = `
+Object {
+  "data": Object {
+    "oneColumn_derivedField": Object {
+      "nodes": Array [
+        Object {
+          "nameInitials": "JS",
+        },
+        Object {
+          "nameInitials": "SS",
+        },
+      ],
+    },
+    "oneColumn_derivedField_sourceField": Object {
+      "nodes": Array [
+        Object {
+          "name": "John Smith",
+          "nameInitials": "JS",
+        },
+        Object {
+          "name": "Sara Smith",
+          "nameInitials": "SS",
+        },
+      ],
+    },
+    "oneColumn_sourceField": Object {
+      "nodes": Array [
+        Object {
+          "name": "John Smith",
+        },
+        Object {
+          "name": "Sara Smith",
+        },
+      ],
+    },
+    "twoColumn_derivedField": Object {
+      "nodes": Array [
+        Object {
+          "combinedNameAndEmail": "John Smith (john.smith@email.com)",
+        },
+        Object {
+          "combinedNameAndEmail": "Sara Smith (sara.smith@email.com)",
+        },
+      ],
+    },
+    "twoColumn_derivedField_sourceField1": Object {
+      "nodes": Array [
+        Object {
+          "combinedNameAndEmail": "John Smith (john.smith@email.com)",
+          "name": "John Smith",
+        },
+        Object {
+          "combinedNameAndEmail": "Sara Smith (sara.smith@email.com)",
+          "name": "Sara Smith",
+        },
+      ],
+    },
+    "twoColumn_derivedField_sourceField1_sourceField2": Object {
+      "nodes": Array [
+        Object {
+          "combinedNameAndEmail": "John Smith (john.smith@email.com)",
+          "email": "john.smith@email.com",
+          "name": "John Smith",
+        },
+        Object {
+          "combinedNameAndEmail": "Sara Smith (sara.smith@email.com)",
+          "email": "sara.smith@email.com",
+          "name": "Sara Smith",
+        },
+      ],
+    },
+    "twoColumn_sourceField1_sourceField2": Object {
+      "nodes": Array [
+        Object {
+          "email": "john.smith@email.com",
+          "name": "John Smith",
+        },
+        Object {
+          "email": "sara.smith@email.com",
+          "name": "Sara Smith",
+        },
+      ],
+    },
+    "withReturnTypeBoolean": Object {
+      "nodes": Array [
+        Object {
+          "hasName": true,
+        },
+        Object {
+          "hasName": true,
+        },
+      ],
+    },
+  },
+}
+`;
