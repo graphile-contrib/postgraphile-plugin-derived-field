@@ -67,37 +67,33 @@ The `identifiers` items can be supplied as strings or objects.  The following ar
 ### Derive a new field from an existing field
 
 ``` js
-derivedFieldDefinitions = [
-  {
-    identifiers: [
-      {
-        table: "my_schema.my_table",
-        columns: ["my_column"],
-      },
-    ],
-    inflect: fieldName => `derivedFrom${fieldName}`,
-    resolve: val => `Value derived from ${val}`,
-  },
-]
+{
+  identifiers: [
+    {
+      table: "my_schema.my_table",
+      columns: ["my_column"],
+    },
+  ],
+  inflect: fieldName => `derivedFrom${fieldName}`,
+  resolve: val => `Value derived from ${val}`,
+}
 ```
 
 ### Derive a new field from two or more existing fields
 
 ``` js
-derivedFieldDefinitions = [
-  {
-    identifiers: [
-      {
-        table: "my_schema.my_table",
-        columns: ["my_column", "my_other_column"],
-      },
-    ],
-    inflect: (...fieldNames) =>
-      `derivedFrom${fieldNames.map(upperFirst).join("And")}`,
-    resolve: (my_column, my_other_column) =>
-      `Value derived from ${my_column} and ${my_other_column}`,
-  },
-]
+{
+  identifiers: [
+    {
+      table: "my_schema.my_table",
+      columns: ["my_column", "my_other_column"],
+    },
+  ],
+  inflect: (...fieldNames) =>
+    `derivedFrom${fieldNames.map(upperFirst).join("And")}`,
+  resolve: (my_column, my_other_column) =>
+    `Value derived from ${my_column} and ${my_other_column}`,
+}
 ```
 
 <!--### Wrap one or more existing fields
