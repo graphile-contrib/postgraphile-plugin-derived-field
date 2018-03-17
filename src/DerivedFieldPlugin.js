@@ -5,8 +5,9 @@ function DerivedFieldPlugin(
   builder.hook("GraphQLObjectType:fields", (fields, build, context) => {
     const {
       extend,
+      getTypeByName,
       pgIntrospectionResultsByKind: introspectionResultsByKind,
-      graphql: { GraphQLString },
+      graphql: { GraphQLString, GraphQLInt, GraphQLFloat, GraphQLBoolean },
       fieldDataGeneratorsByFieldNameByType,
     } = build;
     const {
@@ -90,8 +91,18 @@ function DerivedFieldPlugin(
                 addDataGenerator(setAlias(g, fieldName));
               }
             }
+            const scalarTypes = {
+              String: GraphQLString,
+              Int: GraphQLInt,
+              Float: GraphQLFloat,
+              Boolean: GraphQLBoolean,
+            };
             return {
-              type: def.returnType || GraphQLString,
+              type: def.returnTypeName
+                ? getTypeByName(def.returnTypeName) ||
+                  scalarTypes[def.returnTypeName] ||
+                  GraphQLString
+                : GraphQLString,
               description: def.description,
               resolve: data => {
                 if (
