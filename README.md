@@ -36,8 +36,7 @@ and provide `derivedFieldDefinitions` as an array of objects with the following 
 
 ```
 type DerivedFieldDefintion = {
-  tags?: Array<string>,
-  identifiers?: Array<string | Identifier>,
+  identifiers: Array<string | Identifier>,
   inflect?: function,
   resolve: function
 }
@@ -48,7 +47,7 @@ type Identifier = {
 }
 ```
 
-Either `tags` or `identifiers` must be defined in order to identify the Postgres columns that will be passed to the resolver.
+<!--Either `tags` or `identifiers` must be defined in order to identify the Postgres columns that will be passed to the resolver.-->
 
 The `identifiers` items can be supplied as strings or objects.  The following are equivalent:
 ```
