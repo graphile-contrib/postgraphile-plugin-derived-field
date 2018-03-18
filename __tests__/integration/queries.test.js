@@ -19,8 +19,8 @@ const queriesDir = `${__dirname}/../fixtures/queries`;
 const queryFileNames = readdirSync(queriesDir);
 let queryResults = [];
 
-const kitchenSinkData = () =>
-  readFile(`${__dirname}/../kitchen-sink-data.sql`, "utf8");
+const pluginTestData = () =>
+  readFile(`${__dirname}/../plugin-test-data.sql`, "utf8");
 
 beforeAll(() => {
   // Get a few GraphQL schema instance that we can query.
@@ -29,7 +29,7 @@ beforeAll(() => {
     // Make all of the different schemas with different configurations that we
     // need and wait for them to be created in parallel.
     const [normal] = await Promise.all([
-      createPostGraphQLSchema(pgClient, ["c"], {
+      createPostGraphQLSchema(pgClient, ["p"], {
         appendPlugins: [require("../../index.js")],
         graphileBuildOptions: {
           derivedFieldDefinitions: require("./derivedFieldDefinitions")
@@ -53,7 +53,7 @@ beforeAll(() => {
     // Get a new Postgres client instance.
     return await withPgClient(async pgClient => {
       // Add data to the client instance we are using.
-      await pgClient.query(await kitchenSinkData());
+      await pgClient.query(await pluginTestData());
       // Run all of our queries in parallel.
       return await Promise.all(
         queryFileNames.map(async fileName => {

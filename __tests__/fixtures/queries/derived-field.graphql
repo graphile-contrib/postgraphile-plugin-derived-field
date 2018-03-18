@@ -1,10 +1,10 @@
 query {
-  oneColumn_derivedField: allPeople(first: 2) { nodes { nameInitials } }
-  oneColumn_derivedField_sourceField: allPeople(first: 2) { nodes { nameInitials, name } }
-  oneColumn_sourceField: allPeople(first: 2) { nodes { name } }
-  twoColumn_derivedField: allPeople(first: 2) { nodes { combinedNameAndEmail } }
-  twoColumn_derivedField_sourceField1: allPeople(first: 2) { nodes { combinedNameAndEmail, name } }
-  twoColumn_derivedField_sourceField1_sourceField2: allPeople(first: 2) { nodes { combinedNameAndEmail, name, email } }
-  twoColumn_sourceField1_sourceField2: allPeople(first: 2) { nodes { name, email } }
-  withReturnTypeBoolean: allPeople(first: 2) { nodes { hasName } }
+  oneColumn_derivedField: allPeople { nodes { nameInitials } }
+  oneColumn_derivedField_sourceField: allPeople { nodes { nameInitials, name } }
+  oneColumn_sourceField: allPeople { nodes { name } }
+  twoColumn_derivedField: allPeople { nodes { combinedNameAndEmail } }
+  twoColumn_derivedField_sourceField1: allPeople { nodes { combinedNameAndEmail, name } }
+  twoColumn_derivedField_sourceField1_sourceField2: allPeople { nodes { combinedNameAndEmail, name, email } }
+  twoColumn_sourceField1_sourceField2: allPeople { nodes { name, email } }
+  withReturnTypeBoolean: allPeople { nodes { hasName } }
 }

@@ -2,7 +2,7 @@ const { upperFirst } = require("graphile-build-pg");
 
 module.exports = [
   {
-    identifiers: ["c.person.name"],
+    identifiers: ["p.person.name"],
     inflect: fieldName => `${fieldName}Initials`,
     resolve: name => name.split(" ").reduce((p, c) => p + c.substr(0, 1), ""),
     description: "The person’s initials",
@@ -10,7 +10,7 @@ module.exports = [
   {
     identifiers: [
       {
-        table: "c.person",
+        table: "p.person",
         columns: ["name", "email"],
       },
     ],
@@ -20,7 +20,7 @@ module.exports = [
     description: "The person’s name and email",
   },
   {
-    identifiers: ["c.person.name"],
+    identifiers: ["p.person.name"],
     inflect: () => "hasName",
     resolve: name => typeof name === "string" && name !== "",
     returnTypeName: "Boolean",

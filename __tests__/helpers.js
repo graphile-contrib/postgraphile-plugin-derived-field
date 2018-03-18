@@ -55,7 +55,7 @@ let prepopulatedDBKeepalive;
 
 const populateDatabase = async client => {
   await client.query(
-    await readFilePromise(`${__dirname}/kitchen-sink-data.sql`, "utf8")
+    await readFilePromise(`${__dirname}/plugin-test-data.sql`, "utf8")
   );
   return {};
 };

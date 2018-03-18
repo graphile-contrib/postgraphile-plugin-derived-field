@@ -14,12 +14,12 @@ const testFixtures = [
   {
     name: "prints a schema without the plugin",
     createSchema: client =>
-      createPostGraphQLSchema(client, ["c"], {})
+      createPostGraphQLSchema(client, ["p"], {})
   },
   {
     name: "prints a schema with the plugin and some derived field definitions",
     createSchema: client =>
-      createPostGraphQLSchema(client, ["c"], {
+      createPostGraphQLSchema(client, ["p"], {
         appendPlugins: [require("../../index.js")],
         graphileBuildOptions: {
           derivedFieldDefinitions: require("./derivedFieldDefinitions")
