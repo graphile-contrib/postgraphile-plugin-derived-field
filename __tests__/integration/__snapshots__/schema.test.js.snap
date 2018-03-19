@@ -151,6 +151,8 @@ type PeopleEdge {
 
 # Methods to use when ordering \`Person\`.
 enum PeopleOrderBy {
+  AVATAR_KEY_ASC
+  AVATAR_KEY_DESC
   EMAIL_ASC
   EMAIL_DESC
   ID_ASC
@@ -163,8 +165,13 @@ enum PeopleOrderBy {
 }
 
 type Person implements Node {
+  avatarKey: String
+  avatarUrl: String
+
   # The person’s name and email
   combinedNameAndEmail: String
+
+  # The person’s email
   email: String!
   hasName: Boolean
   id: Int!
@@ -181,6 +188,9 @@ type Person implements Node {
 
 # A condition to be used against \`Person\` object types. All fields are tested for equality and combined with a logical ‘and.’
 input PersonCondition {
+  # Checks for equality with the object’s \`avatarKey\` field.
+  avatarKey: String
+
   # Checks for equality with the object’s \`email\` field.
   email: String
 
@@ -193,6 +203,9 @@ input PersonCondition {
 
 # An input for mutations affecting \`Person\`
 input PersonInput {
+  avatarKey: String
+
+  # The person’s email
   email: String!
   id: Int
 
@@ -202,6 +215,9 @@ input PersonInput {
 
 # Represents an update to a \`Person\`. Fields that are set will be updated.
 input PersonPatch {
+  avatarKey: String
+
+  # The person’s email
   email: String
   id: Int
 
@@ -453,6 +469,8 @@ type PeopleEdge {
 
 # Methods to use when ordering \`Person\`.
 enum PeopleOrderBy {
+  AVATAR_KEY_ASC
+  AVATAR_KEY_DESC
   EMAIL_ASC
   EMAIL_DESC
   ID_ASC
@@ -465,6 +483,9 @@ enum PeopleOrderBy {
 }
 
 type Person implements Node {
+  avatarKey: String
+
+  # The person’s email
   email: String!
   id: Int!
 
@@ -477,6 +498,9 @@ type Person implements Node {
 
 # A condition to be used against \`Person\` object types. All fields are tested for equality and combined with a logical ‘and.’
 input PersonCondition {
+  # Checks for equality with the object’s \`avatarKey\` field.
+  avatarKey: String
+
   # Checks for equality with the object’s \`email\` field.
   email: String
 
@@ -489,6 +513,9 @@ input PersonCondition {
 
 # An input for mutations affecting \`Person\`
 input PersonInput {
+  avatarKey: String
+
+  # The person’s email
   email: String!
   id: Int
 
@@ -498,6 +525,9 @@ input PersonInput {
 
 # Represents an update to a \`Person\`. Fields that are set will be updated.
 input PersonPatch {
+  avatarKey: String
+
+  # The person’s email
   email: String
   id: Int
 

@@ -93,6 +93,20 @@ Object {
         },
       ],
     },
+    "withTaggedColumn": Object {
+      "nodes": Array [
+        Object {
+          "avatarUrl": "https://example.com/15781368",
+          "email": "john.smith@email.com",
+          "name": "John Smith",
+        },
+        Object {
+          "avatarUrl": "https://example.com/19883378",
+          "email": "sara.smith@email.com",
+          "name": "Sara Smith",
+        },
+      ],
+    },
   },
 }
 `;

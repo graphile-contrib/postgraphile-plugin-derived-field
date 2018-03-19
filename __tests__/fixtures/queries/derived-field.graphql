@@ -7,4 +7,5 @@ query {
   twoColumn_derivedField_sourceField1_sourceField2: allPeople { nodes { combinedNameAndEmail, name, email } }
   twoColumn_sourceField1_sourceField2: allPeople { nodes { name, email } }
   withReturnTypeBoolean: allPeople { nodes { hasName } }
+  withTaggedColumn: allPeople { nodes { name, email, avatarUrl } }
 }

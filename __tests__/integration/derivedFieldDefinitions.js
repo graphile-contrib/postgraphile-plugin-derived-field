@@ -25,4 +25,13 @@ module.exports = [
     resolve: name => typeof name === "string" && name !== "",
     returnTypeName: "Boolean",
   },
+  {
+    identifiers: [
+      {
+        tag: "key",
+      },
+    ],
+    inflect: fieldName => fieldName.replace("Key", "Url"),
+    resolve: key => `https://example.com/${key}`,
+  },
 ];
