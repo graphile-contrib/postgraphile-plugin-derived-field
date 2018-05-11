@@ -42,35 +42,9 @@ function DerivedFieldPlugin(
             `Derived field definitions must include 'identifiers'`
           );
         }
-        const identifiers = def.identifiers
-          .filter(
-            // Exclude identifiers that reference other tables
-            ident =>
-              !ident.table ||
-              ident.table === `${table.namespaceName}.${table.name}`
-          )
-          .map(ident => {
-            // Map tag strings to { tag } objects and column strings to { table, columns } objects
-            if (typeof ident !== "string") {
-              return ident;
-            }
-            if (ident.startsWith("@")) {
-              return {
-                tag: ident.substr(1),
-              };
-            } else {
-              const t = ident.substring(0, ident.lastIndexOf("."));
-              const c = ident.substring(
-                ident.lastIndexOf(".") + 1,
-                ident.length
-              );
-              return {
-                table: t,
-                columns: [c],
-              };
-            }
-          });
-        return Object.assign({}, def, { identifiers });
+        return Object.assign({}, def, {
+          identifiers: filterIdentifiers(table, def.identifiers),
+        });
       })
       .reduce((memo, def) => {
         const addDerivedField = columns => {
@@ -133,11 +107,6 @@ function DerivedFieldPlugin(
           );
         };
         for (const ident of def.identifiers) {
-          if ((ident.columns && ident.tag) || (!ident.columns && !ident.tag)) {
-            throw new Error(
-              `One (and only one) of 'columns' or 'tags' must be specified in 'identifers'`
-            );
-          }
           if (ident.columns) {
             addDerivedField(ident.columns);
           }
@@ -160,6 +129,41 @@ function DerivedFieldPlugin(
       `Adding derived field to '${Self.name}'`
     );
   });
+
+  function filterIdentifiers(table, identifiers) {
+    return identifiers
+      .filter(
+        // Exclude identifiers that reference other tables
+        ident =>
+          !ident.table || ident.table === `${table.namespaceName}.${table.name}`
+      )
+      .map(ident => {
+        // Map tag strings to { tag } objects and column strings to { table, columns } objects
+        if (typeof ident !== "string") {
+          return ident;
+        }
+        if (ident.startsWith("@")) {
+          return {
+            tag: ident.substr(1),
+          };
+        } else {
+          const t = ident.substring(0, ident.lastIndexOf("."));
+          const c = ident.substring(ident.lastIndexOf(".") + 1, ident.length);
+          return {
+            table: t,
+            columns: [c],
+          };
+        }
+      })
+      .filter(ident => {
+        if ((ident.columns && ident.tag) || (!ident.columns && !ident.tag)) {
+          throw new Error(
+            `One (and only one) of 'columns' or 'tags' must be specified in 'identifers'`
+          );
+        }
+        return true;
+      });
+  }
 }
 
 module.exports = DerivedFieldPlugin;
