@@ -1,13 +1,11 @@
-function DerivedFieldPlugin(
-  builder,
-  { pgInflection: inflection, derivedFieldDefinitions }
-) {
+function DerivedFieldPlugin(builder, { derivedFieldDefinitions }) {
   builder.hook("GraphQLObjectType:fields", (fields, build, context) => {
     const {
       extend,
       getTypeByName,
       pgIntrospectionResultsByKind: introspectionResultsByKind,
       graphql: { GraphQLString, GraphQLInt, GraphQLFloat, GraphQLBoolean },
+      inflection,
       fieldDataGeneratorsByFieldNameByType,
     } = build;
     const {
@@ -51,9 +49,7 @@ function DerivedFieldPlugin(
           const attrs = introspectionResultsByKind.attribute
             .filter(attr => attr.classId === table.id)
             .filter(attr => columns.includes(attr.name));
-          const fieldNames = attrs.map(attr =>
-            inflection.column(attr.name, table.name, table.namespaceName)
-          );
+          const fieldNames = attrs.map(attr => inflection.column(attr));
           const derivedFieldName = def.inflect(...fieldNames);
           if (memo[derivedFieldName]) {
             throw new Error(
