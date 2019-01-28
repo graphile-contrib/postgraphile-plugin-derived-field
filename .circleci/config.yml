@@ -1,8 +1,8 @@
 version: 2
 jobs:
-  node8.6_pg9.6:
+  node8.10_pg9.6:
     docker:
-      - image: circleci/node:8.6
+      - image: circleci/node:8.10
       - image: circleci/postgres:9.6-alpine
         environment:
           POSTGRES_USER: circleci
@@ -79,6 +79,6 @@ workflows:
   version: 2
   test:
     jobs:
-      - node8.6_pg9.6
+      - node8.10_pg9.6
       - node10_pg10
       - node10_pg11
