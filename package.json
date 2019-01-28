@@ -4,6 +4,7 @@
   "description": "Add derived fields in PostGraphile",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint index.js",
     "test": "scripts/test"
   },
   "repository": {
