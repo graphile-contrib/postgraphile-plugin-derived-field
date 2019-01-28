@@ -11,11 +11,11 @@ jobs:
       - checkout
       - restore_cache:
           key: node-modules-{{ checksum "yarn.lock" }}
-      run:
-        name: install
-        command: |
-          yarn install
-          sudo apt-get install postgresql-client
+      - run:
+          name: install
+          command: |
+            yarn install
+            sudo apt-get install postgresql-client
       - save_cache:
           key: node-modules-{{ checksum "yarn.lock" }}
           paths:
