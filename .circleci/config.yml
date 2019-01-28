@@ -9,6 +9,8 @@ jobs:
           POSTGRES_DB: circle_test
     steps:
       - checkout
+      - run: sudo apt update
+      - run: sudo apt install -y postgresql-client
       - restore_cache:
           name: Restore Yarn Package Cache
           keys:
@@ -21,8 +23,6 @@ jobs:
           key: yarn-packages-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
-      - run: sudo apt update
-      - run: sudo apt install -y postgresql-client || true
       - run: yarn lint
       - run:
           name: yarn test
