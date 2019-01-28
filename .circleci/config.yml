@@ -11,20 +11,15 @@ jobs:
       - checkout
       - restore_cache:
           key: node-modules-{{ checksum "yarn.lock" }}
-      - run:
-          name: install
-          command: |
-            yarn install
-            sudo apt-get install postgresql-client
+      - run: yarn install
       - save_cache:
           key: node-modules-{{ checksum "yarn.lock" }}
           paths:
             - ./node_modules
+      - run: sudo apt install -y postgresql-client || true
+      - run: yarn lint
       - run:
-          name: lint
-          command: yarn lint
-      - run:
-          name: test
+          name: yarn test
           command: yarn test
           environment:
             TEST_DATABASE_URL: postgres://circleci@localhost:5432/circle_test
