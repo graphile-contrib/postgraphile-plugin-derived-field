@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:8.6
+      - image: circleci/node:8.6-stretch
       - image: circleci/postgres:9.6-alpine
         environment:
           POSTGRES_USER: circleci
@@ -10,12 +10,18 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: node-modules-{{ checksum "yarn.lock" }}
-      - run: yarn install
+          name: Restore Yarn Package Cache
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
+      - run:
+          name: Install Dependencies
+          command: yarn install --frozen-lockfile
       - save_cache:
-          key: node-modules-{{ checksum "yarn.lock" }}
+          name: Save Yarn Package Cache
+          key: yarn-packages-{{ checksum "yarn.lock" }}
           paths:
-            - ./node_modules
+            - ~/.cache/yarn
+      - run: sudo apt update
       - run: sudo apt install -y postgresql-client || true
       - run: yarn lint
       - run:
