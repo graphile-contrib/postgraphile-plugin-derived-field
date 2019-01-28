@@ -16,10 +16,6 @@
   "bugs": {
     "url": "https://github.com/mattbretl/postgraphile-plugin-derived-field/issues"
   },
-  "dependencies": {},
-  "peerDependencies": {
-    "postgraphile": "^4.0.0-beta.8"
-  },
   "devDependencies": {
     "eslint": "^4.0.0",
     "eslint-config-prettier": "2.3.0",
