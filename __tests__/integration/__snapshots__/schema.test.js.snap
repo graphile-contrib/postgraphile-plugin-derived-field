@@ -87,6 +87,19 @@ type DeletePersonPayload {
   query: Query
 }
 
+enum MenuExtrasType {
+  EMAILS
+  LOCATIONS
+  LOGO
+  PHONES
+  SEARCH
+}
+
+type MenuExtrasWithDefault {
+  isEnabled: Boolean
+  menuExtra: MenuExtrasType
+}
+
 \\"\\"\\"
 The root mutation type which contains root level fields which mutate data.
 \\"\\"\\"
@@ -189,6 +202,8 @@ enum PeopleOrderBy {
   EMAIL_DESC
   ID_ASC
   ID_DESC
+  MENU_EXTRAS_ASC
+  MENU_EXTRAS_DESC
   NAME_ASC
   NAME_DESC
   NATURAL
@@ -207,6 +222,8 @@ type Person implements Node {
   email: String!
   hasName: Boolean
   id: Int!
+  menuExtras: [MenuExtrasType]
+  menuExtrasWithDefaults: [MenuExtrasWithDefault]
 
   \\"\\"\\"The person’s name\\"\\"\\"
   name: String!
@@ -233,6 +250,9 @@ input PersonCondition {
   \\"\\"\\"Checks for equality with the object’s \`id\` field.\\"\\"\\"
   id: Int
 
+  \\"\\"\\"Checks for equality with the object’s \`menuExtras\` field.\\"\\"\\"
+  menuExtras: [MenuExtrasType]
+
   \\"\\"\\"Checks for equality with the object’s \`name\` field.\\"\\"\\"
   name: String
 }
@@ -244,6 +264,7 @@ input PersonInput {
   \\"\\"\\"The person’s email\\"\\"\\"
   email: String!
   id: Int
+  menuExtras: [MenuExtrasType]
 
   \\"\\"\\"The person’s name\\"\\"\\"
   name: String!
@@ -258,6 +279,7 @@ input PersonPatch {
   \\"\\"\\"The person’s email\\"\\"\\"
   email: String
   id: Int
+  menuExtras: [MenuExtrasType]
 
   \\"\\"\\"The person’s name\\"\\"\\"
   name: String
@@ -465,6 +487,14 @@ type DeletePersonPayload {
   query: Query
 }
 
+enum MenuExtrasType {
+  EMAILS
+  LOCATIONS
+  LOGO
+  PHONES
+  SEARCH
+}
+
 \\"\\"\\"
 The root mutation type which contains root level fields which mutate data.
 \\"\\"\\"
@@ -567,6 +597,8 @@ enum PeopleOrderBy {
   EMAIL_DESC
   ID_ASC
   ID_DESC
+  MENU_EXTRAS_ASC
+  MENU_EXTRAS_DESC
   NAME_ASC
   NAME_DESC
   NATURAL
@@ -580,6 +612,7 @@ type Person implements Node {
   \\"\\"\\"The person’s email\\"\\"\\"
   email: String!
   id: Int!
+  menuExtras: [MenuExtrasType]
 
   \\"\\"\\"The person’s name\\"\\"\\"
   name: String!
@@ -603,6 +636,9 @@ input PersonCondition {
   \\"\\"\\"Checks for equality with the object’s \`id\` field.\\"\\"\\"
   id: Int
 
+  \\"\\"\\"Checks for equality with the object’s \`menuExtras\` field.\\"\\"\\"
+  menuExtras: [MenuExtrasType]
+
   \\"\\"\\"Checks for equality with the object’s \`name\` field.\\"\\"\\"
   name: String
 }
@@ -614,6 +650,7 @@ input PersonInput {
   \\"\\"\\"The person’s email\\"\\"\\"
   email: String!
   id: Int
+  menuExtras: [MenuExtrasType]
 
   \\"\\"\\"The person’s name\\"\\"\\"
   name: String!
@@ -628,6 +665,7 @@ input PersonPatch {
   \\"\\"\\"The person’s email\\"\\"\\"
   email: String
   id: Int
+  menuExtras: [MenuExtrasType]
 
   \\"\\"\\"The person’s name\\"\\"\\"
   name: String

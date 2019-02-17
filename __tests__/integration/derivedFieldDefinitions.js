@@ -34,4 +34,27 @@ module.exports = [
     inflect: fieldName => fieldName.replace("Key", "Url"),
     resolve: key => `https://example.com/${key}`,
   },
+  {
+    identifiers: [
+      {
+        table: "p.person",
+        columns: ["menu_extras"],
+      },
+    ],
+    type: build => {
+      const {
+        getTypeByName,
+        graphql: { GraphQLList },
+      } = build;
+      const compositeTypeName = "MenuExtrasWithDefault";
+      const compositeType = getTypeByName(compositeTypeName);
+      if (!compositeType)
+        throw new Error(`Could not find composite type '${compositeTypeName}'`);
+      return new GraphQLList(compositeType);
+    },
+    inflect: fieldName => `${fieldName}WithDefaults`,
+    resolve: () => {
+      return [];
+    },
+  },
 ];
