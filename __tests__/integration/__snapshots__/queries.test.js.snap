@@ -93,6 +93,18 @@ Object {
         },
       ],
     },
+    "withReturnTypeComposite": Object {
+      "nodes": Array [
+        Object {
+          "menuExtrasWithDefaults": Array [],
+          "name": "John Smith",
+        },
+        Object {
+          "menuExtrasWithDefaults": Array [],
+          "name": "Sara Smith",
+        },
+      ],
+    },
     "withTaggedColumn": Object {
       "nodes": Array [
         Object {

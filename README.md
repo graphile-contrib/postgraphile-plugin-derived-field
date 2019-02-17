@@ -35,19 +35,19 @@ app.listen(5000);
 Provide `derivedFieldDefinitions` as an array of objects with the following structure:
 
 ```
-type DerivedFieldDefinition = {
+{
   identifiers: Array<Identifier>,
   inflect: function,
   resolve: function,
+  type?: string | build => T,
   description?: string
-  returnTypeName?: string
 }
 ```
 The Scenarios section below provides guidance on structuring `identifiers`, `inflect`, and `resolve` for your specific use case.
 
-Use `description` to populate the field description in the schema.
+Use `type` to specify the GraphQL type that the `resolve` function returns. This can be a string identifying the GraphQL type name, or a function (with the `build` helper available as the first argument) that returns a GraphQL type. Default: String
 
-Use `returnTypeName` to specify the name of the GraphQL type that `resolve` function returns.  Default: "String"
+Use `description` to populate the field description in the schema.
 
 ## Scenarios
 

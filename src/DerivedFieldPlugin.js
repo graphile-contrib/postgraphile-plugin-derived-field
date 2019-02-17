@@ -79,12 +79,34 @@ function DerivedFieldPlugin(builder, { derivedFieldDefinitions }) {
                 Float: GraphQLFloat,
                 Boolean: GraphQLBoolean,
               };
+              let type;
+              if (typeof def.type === "string") {
+                type = getTypeByName(def.type) || scalarTypes[def.type];
+                if (!type) {
+                  throw new Error(
+                    "Derived field definition requires 'type' string to be a valid GraphQL type name"
+                  );
+                }
+              } else if (typeof def.type === "function") {
+                type = def.type(build);
+                if (!type) {
+                  throw new Error(
+                    "Derived field definition requires 'type' function to return a valid GraphQL type"
+                  );
+                }
+              } else if (def.returnTypeName) {
+                // DEPRECATED
+                type =
+                  getTypeByName(def.returnTypeName) ||
+                  scalarTypes[def.returnTypeName];
+                if (!type) {
+                  throw new Error(
+                    "Derived field definition requires 'returnTypeName' string to be a valid GraphQL type name"
+                  );
+                }
+              }
               return {
-                type: def.returnTypeName
-                  ? getTypeByName(def.returnTypeName) ||
-                    scalarTypes[def.returnTypeName] ||
-                    GraphQLString
-                  : GraphQLString,
+                type: type || GraphQLString,
                 description: def.description,
                 resolve: data => {
                   if (
