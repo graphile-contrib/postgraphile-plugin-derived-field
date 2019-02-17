@@ -39,15 +39,15 @@ type DerivedFieldDefinition = {
   identifiers: Array<Identifier>,
   inflect: function,
   resolve: function,
+  type?: function,
   description?: string
-  returnTypeName?: string
 }
 ```
 The Scenarios section below provides guidance on structuring `identifiers`, `inflect`, and `resolve` for your specific use case.
 
-Use `description` to populate the field description in the schema.
+Use `type` to specify the GraphQL type that the `resolve` function returns. Default: String
 
-Use `returnTypeName` to specify the name of the GraphQL type that `resolve` function returns.  Default: "String"
+Use `description` to populate the field description in the schema.
 
 ## Scenarios
 

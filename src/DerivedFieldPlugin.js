@@ -80,11 +80,14 @@ function DerivedFieldPlugin(builder, { derivedFieldDefinitions }) {
                 Boolean: GraphQLBoolean,
               };
               return {
-                type: def.returnTypeName
-                  ? getTypeByName(def.returnTypeName) ||
-                    scalarTypes[def.returnTypeName] ||
-                    GraphQLString
-                  : GraphQLString,
+                type:
+                  typeof def.type === "function"
+                    ? def.type(build)
+                    : def.returnTypeName
+                    ? getTypeByName(def.returnTypeName) ||
+                      scalarTypes[def.returnTypeName] ||
+                      GraphQLString
+                    : GraphQLString,
                 description: def.description,
                 resolve: data => {
                   if (
