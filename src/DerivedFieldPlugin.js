@@ -116,7 +116,9 @@ function DerivedFieldPlugin(builder, { derivedFieldDefinitions }) {
                       `Derived field '${derivedFieldName}' could not be resolved`
                     );
                   }
-                  const fieldValues = fieldNames.map(fieldName => data[fieldName]);
+                  const fieldValues = fieldNames.map(
+                    fieldName => data[fieldName]
+                  );
                   return def.resolve(...fieldValues, context, info);
                 },
               };
