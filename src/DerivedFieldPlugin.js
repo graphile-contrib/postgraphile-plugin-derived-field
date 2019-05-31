@@ -108,7 +108,7 @@ function DerivedFieldPlugin(builder, { derivedFieldDefinitions }) {
               return {
                 type: type || GraphQLString,
                 description: def.description,
-                resolve: data => {
+                resolve: (data, args, context, info) => {
                   if (
                     fieldNames.filter(n => !data.hasOwnProperty(n)).length > 0
                   ) {
@@ -116,8 +116,8 @@ function DerivedFieldPlugin(builder, { derivedFieldDefinitions }) {
                       `Derived field '${derivedFieldName}' could not be resolved`
                     );
                   }
-                  const args = fieldNames.map(fieldName => data[fieldName]);
-                  return def.resolve(...args);
+                  const fieldValues = fieldNames.map(fieldName => data[fieldName]);
+                  return def.resolve(...fieldValues, context, info);
                 },
               };
             },
