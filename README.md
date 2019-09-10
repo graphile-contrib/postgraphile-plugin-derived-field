@@ -1,4 +1,4 @@
-[![Package on npm](https://img.shields.io/npm/v/postgraphile-plugin-derived-field.svg)](https://www.npmjs.com/package/postgraphile-plugin-derived-field) [![CircleCI](https://circleci.com/gh/mattbretl/postgraphile-plugin-derived-field.svg?style=svg)](https://circleci.com/gh/mattbretl/postgraphile-plugin-derived-field)
+[![Package on npm](https://img.shields.io/npm/v/postgraphile-plugin-derived-field.svg)](https://www.npmjs.com/package/postgraphile-plugin-derived-field) [![CircleCI](https://circleci.com/gh/graphile-contrib/postgraphile-plugin-derived-field.svg?style=svg)](https://circleci.com/gh/graphile-contrib/postgraphile-plugin-derived-field)
 
 # postgraphile-plugin-derived-field
 
