@@ -110,7 +110,9 @@ function DerivedFieldPlugin(builder, { derivedFieldDefinitions }) {
                 description: def.description,
                 resolve: (data, args, context, info) => {
                   if (
-                    fieldNames.filter(n => !data.hasOwnProperty(n)).length > 0
+                    fieldNames.filter(
+                      n => !Object.prototype.hasOwnProperty.call(data, n)
+                    ).length > 0
                   ) {
                     throw new Error(
                       `Derived field '${derivedFieldName}' could not be resolved`
