@@ -32,8 +32,8 @@ beforeAll(() => {
       createPostGraphQLSchema(pgClient, ["p"], {
         appendPlugins: [require("../../index.js")],
         graphileBuildOptions: {
-          derivedFieldDefinitions: require("./derivedFieldDefinitions")
-        }
+          derivedFieldDefinitions: require("./derivedFieldDefinitions"),
+        },
       }),
     ]);
     debug(printSchema(normal));
@@ -69,8 +69,8 @@ beforeAll(() => {
             fileName === "classic-ids.graphql"
               ? gqlSchemas.classicIds
               : fileName === "dynamic-json.graphql"
-                ? gqlSchemas.dynamicJson
-                : gqlSchemas.normal;
+              ? gqlSchemas.dynamicJson
+              : gqlSchemas.normal;
           // Return the result of our GraphQL query.
           const result = await graphql(gqlSchema, query, null, {
             pgClient: pgClient,

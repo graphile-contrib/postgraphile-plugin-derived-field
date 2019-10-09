@@ -6,15 +6,14 @@ const { withPgClient } = require("../helpers");
 const { createPostGraphQLSchema } = require("postgraphile-core");
 
 // This test suite can be flaky. Increase it’s timeout.
-jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000 * 20;
+jest.setTimeout(1000 * 20);
 
 let testResults;
 
 const testFixtures = [
   {
     name: "prints a schema without the plugin",
-    createSchema: client =>
-      createPostGraphQLSchema(client, ["p"], {})
+    createSchema: client => createPostGraphQLSchema(client, ["p"], {}),
   },
   {
     name: "prints a schema with the plugin and some derived field definitions",
@@ -22,10 +21,10 @@ const testFixtures = [
       createPostGraphQLSchema(client, ["p"], {
         appendPlugins: [require("../../index.js")],
         graphileBuildOptions: {
-          derivedFieldDefinitions: require("./derivedFieldDefinitions")
-        }
-      })
-  }
+          derivedFieldDefinitions: require("./derivedFieldDefinitions"),
+        },
+      }),
+  },
 ];
 
 beforeAll(() => {
